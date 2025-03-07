@@ -4,6 +4,7 @@ import io.github.juanalenca.produtosapi.model.Produto;
 import io.github.juanalenca.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,6 +45,11 @@ public class ProdutoController {
         produto.setId(id);
         //save serve tanto para salvar quanto para atualizar, o que muda é se o produto vem com id ou não
         produtoRepository.save(produto);
+    }
+
+    @GetMapping
+    public List<Produto> buscar(@RequestParam("nome") String nome){
+        return produtoRepository.findByNome(nome);
     }
 
 }
