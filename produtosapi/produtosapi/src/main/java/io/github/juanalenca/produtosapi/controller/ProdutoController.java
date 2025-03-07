@@ -38,4 +38,12 @@ public class ProdutoController {
         produtoRepository.deleteById(id);
     }
 
+    @PutMapping("{id}")
+    public void atualizar(@PathVariable("id") String id,
+                          @RequestBody Produto produto){
+        produto.setId(id);
+        //save serve tanto para salvar quanto para atualizar, o que muda é se o produto vem com id ou não
+        produtoRepository.save(produto);
+    }
+
 }
