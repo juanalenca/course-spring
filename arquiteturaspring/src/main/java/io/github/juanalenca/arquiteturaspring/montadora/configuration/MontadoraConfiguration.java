@@ -4,11 +4,13 @@ import io.github.juanalenca.arquiteturaspring.montadora.Motor;
 import io.github.juanalenca.arquiteturaspring.montadora.TipoMotor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class MontadoraConfiguration {
 
     @Bean(name = "motorAspirado") //Bean é um metodo que retorna um objeto construido
+    //@Primary //Toorna este Bean o bean padrão
     public Motor motorAspirado(){
         var motor = new Motor();
         motor.setCavalos(175);

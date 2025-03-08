@@ -15,9 +15,10 @@ public class TesteFabricaController {
     /*
      * A anotação @Autowired realiza a injeção de dependência do Spring,
      * fornecendo automaticamente uma instância gerenciada da classe Motor.
-     */
+     * //@Qualifier("motorTurbo") //especifica um determinado Bean quando existem varios
+     * */
     @Autowired
-    @Qualifier("motorTurbo") //especifica um determinado Bean quando existem varios
+    @Eletrico
     private Motor motor;
 
     @PostMapping
