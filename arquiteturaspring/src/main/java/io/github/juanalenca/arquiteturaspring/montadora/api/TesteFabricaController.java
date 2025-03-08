@@ -2,6 +2,7 @@ package io.github.juanalenca.arquiteturaspring.montadora.api;
 
 import io.github.juanalenca.arquiteturaspring.montadora.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,13 @@ public class TesteFabricaController {
      * fornecendo automaticamente uma instância gerenciada da classe Motor.
      */
     @Autowired
+    @Qualifier("motorTurbo") //especifica um determinado Bean quando existem varios
     private Motor motor;
 
-    @PostMapping("/ligarCarro")
+    @PostMapping
     public CarroStatus ligarCarro(@RequestBody Chave chave){
         var carro = new ToyotaCorolla(motor);
-        return carro.darignicao(chave);
+        return carro.darIgnicao(chave);
     }
 
 }
