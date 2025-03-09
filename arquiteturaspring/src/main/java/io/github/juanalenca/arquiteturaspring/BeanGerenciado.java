@@ -3,6 +3,8 @@ package io.github.juanalenca.arquiteturaspring;
 import io.github.juanalenca.arquiteturaspring.todos.TodoEntity;
 import io.github.juanalenca.arquiteturaspring.todos.TodoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,8 +19,9 @@ import org.springframework.stereotype.Component;
  * - session: Atrelado à sessão do usuário, permanecendo ativo enquanto a sessão existir.
  * - application: Compartilhado em toda a aplicação, similar ao singleton, mas gerenciado de forma diferente.
  */
+@Lazy(true) //só carrega quando for preciso
 @Component
-@Scope("singleton")
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 public class BeanGerenciado {
 
     //injeção via propriedada sem precisar de um construtor
