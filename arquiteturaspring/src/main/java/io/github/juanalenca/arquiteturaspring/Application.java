@@ -4,9 +4,11 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
+@EnableConfigurationProperties
 public class Application {
 
 	public static void main(String[] args) {
@@ -23,7 +25,12 @@ public class Application {
 
 		//Contexto da aplicação já iniciada:
 		ConfigurableApplicationContext applicationContext = biulder.context();
-//		var produtoRepository = applicationContext.getBean("produtoRepository");
+
+		ExemploValue value = applicationContext.getBean(ExemploValue.class);
+		value.imprimirVariable();
+
+		AppProperties properties = applicationContext.getBean(AppProperties.class);
+		System.out.println(properties.getValue1());
 	}
 
 }
