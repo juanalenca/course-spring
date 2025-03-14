@@ -47,11 +47,11 @@ class LivroRepositoryTest {
         livro.setIsbn("39646-28850");
         livro.setPreco(BigDecimal.valueOf(50));
         livro.setGenero(GeneroLivro.FANTASIA);
-        livro.setTitulo("The Lord of the Rings");
-        livro.setDataPublicacao(LocalDate.of(1954, 7, 29));
+        livro.setTitulo("The Two Towers (Lord of the Rings, Part Two)");
+        livro.setDataPublicacao(LocalDate.of(1954, 11, 11));
 
         Autor autor = new Autor();
-        autor.setNome("John Ronald Reuel Tolkien");
+        autor.setNome("Fulano");
         autor.setNacionalidade("Sul-Africano");
         autor.setDataNascimento(LocalDate.of(1892, 1, 3));
 
@@ -80,6 +80,30 @@ class LivroRepositoryTest {
         livro.setAutor(autor);
 
         repository.save(livro);
+    }
+
+
+    @Test
+    void atualizarAutorDoLivro(){
+        UUID idLivro = UUID.fromString("f9c8fbb0-a805-4471-a843-d71001bc9460");
+        Livro livroParaAtualizar = repository.findById(idLivro).orElse(null);
+
+        if (livroParaAtualizar != null) {
+            UUID idAutor = UUID.fromString("7ac08269-bd9c-4144-8151-2829dad1e293");
+            Autor tolkien = autorRepository.findById(idAutor).orElse(null);
+
+            livroParaAtualizar.setAutor(tolkien);
+
+            repository.save(livroParaAtualizar);
+        } else {
+            fail("Livro não encontrado para atualização.");
+        }
+    }
+
+    @Test
+    void deletar(){
+        UUID idLivro = UUID.fromString("f9c8fbb0-a805-4471-a843-d71001bc9460");
+        repository.deleteById(idLivro);
     }
 
 }
