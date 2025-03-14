@@ -40,4 +40,46 @@ class LivroRepositoryTest {
         repository.save(livro);
     }
 
+
+    @Test
+    void salvarAutorELivroTest(){
+        Livro livro = new Livro();
+        livro.setIsbn("39646-28850");
+        livro.setPreco(BigDecimal.valueOf(50));
+        livro.setGenero(GeneroLivro.FANTASIA);
+        livro.setTitulo("The Lord of the Rings");
+        livro.setDataPublicacao(LocalDate.of(1954, 7, 29));
+
+        Autor autor = new Autor();
+        autor.setNome("John Ronald Reuel Tolkien");
+        autor.setNacionalidade("Sul-Africano");
+        autor.setDataNascimento(LocalDate.of(1892, 1, 3));
+
+        autorRepository.save(autor);
+
+        livro.setAutor(autor);
+
+        repository.save(livro);
+    }
+
+
+    @Test
+    void salvarCascateTest(){
+        Livro livro = new Livro();
+        livro.setIsbn("95417-04513");
+        livro.setPreco(BigDecimal.valueOf(60));
+        livro.setGenero(GeneroLivro.FANTASIA);
+        livro.setTitulo("Game of Thrones");
+        livro.setDataPublicacao(LocalDate.of(1996, 8, 6));
+
+        Autor autor = new Autor();
+        autor.setNome("George R. R. Martin");
+        autor.setNacionalidade("Americano");
+        autor.setDataNascimento(LocalDate.of(1948, 9, 20));
+
+        livro.setAutor(autor);
+
+        repository.save(livro);
+    }
+
 }
